@@ -1,0 +1,58 @@
+{% extends 'pmanager/base.html' %}
+{% block title %}المبادرات{% endblock %}
+{% block body %}
+<style>
+#weekly_reports:hover{
+    background-color: #eaeaea !important;
+}
+
+</style>
+     <div class="container">
+     <h4 class="text-center">التقارير الأسبوعية للمبادرات</h4>
+         <div class="row" >
+              <div class="col-1"></div>
+              <div class="col-5 text-center" style="margin-top: 1.5%;">
+                  <div >
+                      <div>
+                      <h5 class="d-inline" >عنوان المبادرة: &nbsp;</h5>
+                      <h5 class="d-inline" style=" color: #933939;">{{ initi.mub_name }}</h5>
+                  </div>
+                  </div>
+              </div>
+              <div class="col-5 text-center" style="margin-top: 1.5%;">
+                  <div>
+                      <div>
+                          <h5 class="d-inline">قائد المبادرة: &nbsp; </h5>
+                          <h5 class="d-inline"  style=" color: #933939;">{{ initi.leader_name }}</h5>
+                      </div>
+                  </div>
+              </div>
+               <div class="col-1"></div>
+          </div>
+         <hr style="width: 80%">
+         {% for mub in initi.reports_set.all %}
+               <div class="row">
+                 <div class="col-3"></div>
+                 <div class="col-6" >
+                    <a href="{% url 'pmanager:details' mub.id  %}" style=" text-decoration: none !important; color: #1b1e21">
+                        <ul class="" style="background: none; !important;">
+                            <li id="weekly_reports" class="list-group-item d-flex justify-content-between align-items-center">
+                                {{ mub.week_ar  }}
+                                {% if mub.is_read == 0 %}
+                                     <span style="text-align: left; font-size: 11px">لم يتم التقييم &nbsp;
+                                         <i class="fas fa-info-circle" title="لم يتم التقييم" style="color: orange; font-size: 17px !important;"></i></span>
+                                {% else %}
+                                    <span style="text-align: left; font-size: 11px">تم التقييم &nbsp;
+                                         <i class="fas fa-check-circle" title="تم التقييم" style="color: green; font-size: 17px !important;"></i></span>                                {% endif %}
+                            </li>
+                        </ul>
+                    </a>
+                 </div>
+                 <div class="col-3"></div>
+              </div>
+        {% endfor %}
+
+
+     </div>
+
+{% endblock %}

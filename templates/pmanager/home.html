@@ -1,0 +1,43 @@
+
+{% extends 'pmanager/base.html' %}
+{% block title %}متابعة أداء المبادرات{% endblock %}
+
+{% block body %}
+
+<h3 class="text-center" style="margin-top: 2%">مبادرات المكاسب السريعة</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+           <div class="row">
+               <div class="col" style="    margin-top: 10%;">
+                    <label  style="margin-top: 12%"></label><span>
+
+                   {% for foo in mub %}
+                         {{ foo.mub_name }}
+                   {% endfor %}
+
+                  </span>
+               </div>
+           </div>
+            <div class="row">
+                <div class="col">
+                    <label  style="margin-top: 9%">نسبة الإنجاز الكلي</label><span>( %30 )</span>
+                </div>
+            </div>
+            <div class="row">
+                    <a href="{% url 'pmanager:initiative' %}" style="width: 100%">
+                        <div class="col" id="mbdView">
+                            <label  style="margin-top: 9%; font-weight: bold">عرض التفاصيل </label>
+                            <i class="fas fa-chevron-circle-left"></i>
+                        </div>
+                    </a>
+            </div>
+        </div>
+         <div class="col-8">
+
+         </div>
+    </div>
+</div>
+
+{% endblock %}
+
